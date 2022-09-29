@@ -8,7 +8,7 @@ const refs = {
 const formData = {};
 
 refs.submit.addEventListener('submit', onSubmit);
-refs.form.addEventListener('input', onInput);
+refs.form.addEventListener('input', throttle(onInput, 500));
 
 fillMessage();
 
@@ -28,8 +28,11 @@ function fillMessage() {
   const savedMessage = localStorage.getItem('feedback-form-state');
   const parcedMessage = JSON.parse(savedMessage);
 
-  if (savedMessage) {
-    refs.form.message.value = parcedMessage.message;
+  if (parcedMessage) {
     refs.form.email.value = parcedMessage.email;
+  }
+
+  if (parcedMessage) {
+    refs.form.message.value = parcedMessage.message;
   }
 }
