@@ -25,7 +25,6 @@ function onSubmit(e) {
 function onInput(e) {
   formData[e.target.name] = e.target.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
-  //   console.log(e.target.name);
 }
 
 function fillMessage() {
