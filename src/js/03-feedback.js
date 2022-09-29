@@ -14,9 +14,21 @@ fillMessage();
 
 function onSubmit(e) {
   e.preventDefault();
+
+  if (
+    e.currentTarget.elements.email.value === '' ||
+    e.currentTarget.elements.message.value === ''
+  ) {
+    alert(
+      '🚫 The form has not been submitted. Please make sure you filled in the email and the message fields'
+    );
+    return;
+  }
+
   console.log('Form has been submitted!');
-  console.log(`Your email: ${refs.form.email.value}`);
-  console.log(`Your message: ${refs.form.message.value}`);
+  // console.log(`Your email: ${refs.form.email.value}`);
+  // console.log(`Your message: ${refs.form.message.value}`);
+  console.log(formData);
   e.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
 }
