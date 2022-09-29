@@ -15,6 +15,8 @@ fillMessage();
 function onSubmit(e) {
   e.preventDefault();
   console.log('Form has been submitted!');
+  console.log(`Your email: ${refs.form.email.value}`);
+  console.log(`Your message: ${refs.form.message.value}`);
   e.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
 }
@@ -25,7 +27,6 @@ function onInput(e) {
 }
 
 function fillMessage() {
-  console.log(formData);
   if (formData) {
     refs.form.email.value = formData.email || '';
     refs.form.message.value = formData.message || '';
