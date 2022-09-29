@@ -5,7 +5,10 @@ const refs = {
   form: document.querySelector('.feedback-form'),
 };
 
-const formData = {};
+const formData = {
+  email: '',
+  message: '',
+};
 
 refs.submit.addEventListener('submit', onSubmit);
 refs.form.addEventListener('input', throttle(onInput, 500));
@@ -22,17 +25,18 @@ function onSubmit(e) {
 function onInput(e) {
   formData[e.target.name] = e.target.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
+  //   console.log(e.target.name);
 }
 
 function fillMessage() {
   const savedMessage = localStorage.getItem('feedback-form-state');
   const parcedMessage = JSON.parse(savedMessage);
 
-  if (parcedMessage) {
+  if (parcedMessage.email) {
     refs.form.email.value = parcedMessage.email;
   }
 
-  if (parcedMessage) {
+  if (parcedMessage.message) {
     refs.form.message.value = parcedMessage.message;
   }
 }
