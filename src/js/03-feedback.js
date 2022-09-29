@@ -5,10 +5,7 @@ const refs = {
   form: document.querySelector('.feedback-form'),
 };
 
-const formData = {
-  email: '',
-  message: '',
-};
+const formData = JSON.parse(localStorage.getItem('feedback-form-state')) || {};
 
 refs.submit.addEventListener('submit', onSubmit);
 refs.form.addEventListener('input', throttle(onInput, 500));
@@ -28,14 +25,9 @@ function onInput(e) {
 }
 
 function fillMessage() {
-  const savedMessage = localStorage.getItem('feedback-form-state');
-  const parcedMessage = JSON.parse(savedMessage);
-
-  if (parcedMessage.email) {
-    refs.form.email.value = parcedMessage.email;
-  }
-
-  if (parcedMessage.message) {
-    refs.form.message.value = parcedMessage.message;
+  console.log(formData);
+  if (formData) {
+    refs.form.email.value = formData.email || '';
+    refs.form.message.value = formData.message || '';
   }
 }
