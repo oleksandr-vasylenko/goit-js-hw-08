@@ -5,9 +5,9 @@ const player = new Player(iframe);
 
 let timeData = JSON.parse(localStorage.getItem('videoplayer-current-time'));
 
-openPage();
+currentTimeChecker();
 
-function openPage() {
+function currentTimeChecker() {
   if (timeData) {
     player.setCurrentTime(timeData);
   }
