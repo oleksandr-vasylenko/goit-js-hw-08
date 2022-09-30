@@ -1,3 +1,4 @@
+import throttle from 'lodash.throttle';
 import Player from '@vimeo/player';
 
 const iframe = document.querySelector('iframe');
@@ -13,7 +14,8 @@ function currentTimeChecker() {
   }
 }
 
-player.on('timeupdate', function (data) {
-  timeData = Math.round(data.seconds);
-  localStorage.setItem('videoplayer-current-time', timeData);
-});
+player.on('timeupdate', throttle(timeCapture, 1000));
+
+function timeCapture(data) {
+  localStorage.setItem('videoplayer-current-time', Math.round(data.seconds));
+}
