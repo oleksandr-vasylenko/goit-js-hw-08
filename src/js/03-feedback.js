@@ -15,10 +15,9 @@ fillMessage();
 function onSubmit(e) {
   e.preventDefault();
 
-  if (
-    e.currentTarget.elements.email.value === '' ||
-    e.currentTarget.elements.message.value === ''
-  ) {
+  const { email, message } = e.currentTarget.elements;
+
+  if (email.value === '' || message.value === '') {
     alert(
       '🚫 The form has not been submitted. Please make sure you filled in the email and the message fields'
     );
